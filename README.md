@@ -6,10 +6,12 @@ This is designed for internal use by Kubernetes applications, and includes a ser
 
 ## Example usage
 
-    helm upgrade --install squid . --debug --namespace squid
+    git clone https://github.com/dark-vex/squid-restricted-http-proxy.git && cd squid-restricted-http-proxy
+
+    helm upgrade --install squid . --namespace squid --create-namespace=squid
 
     # Start an interactive shell
-    kubectl run my-shell --rm -i --tty --image=ubuntu --restart=Never \
+    kubectl run my-shell --rm -i --tty --image=nginx --restart=Never \
     --env=http_proxy=http://squid-squid-restricted-http-proxy.squid:3128 \
     --env=https_proxy=http://squid-squid-restricted-http-proxy.squid:3128 \
     sh
